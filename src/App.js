@@ -1,8 +1,8 @@
 import './App.css'
-import Counter from './Counter/Counter'
+import Jotto from './Jotto/Jotto'
 
 function App() {
-  return <Counter />
+  return <Jotto />
 }
 
 export default App

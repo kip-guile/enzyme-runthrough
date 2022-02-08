@@ -1,12 +1,9 @@
 import { shallow } from 'enzyme'
 import Counter from '../Counter'
+import { findTestByAttrr } from '../../utils'
 
 const setup = (props = {}, state = null) => {
   return shallow(<Counter {...props} />)
-}
-
-const findTestByAttrr = (wrapper, val) => {
-  return wrapper.find(`[data-test="${val}"]`)
 }
 
 test('renders without error', () => {
