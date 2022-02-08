@@ -1,3 +1,5 @@
+import propTypes from 'prop-types'
+
 const Congrats = ({ success }) => {
   return success ? (
     <div data-test='component-congrats'>
@@ -8,6 +10,10 @@ const Congrats = ({ success }) => {
   ) : (
     <div data-test='component-congrats' />
   )
+}
+
+Congrats.propTypes = {
+  success: propTypes.bool.isRequired,
 }
 
 export default Congrats
