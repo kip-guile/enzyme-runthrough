@@ -18,7 +18,7 @@ test('does not throw warning with expected props', () => {
 describe('if there are no words guessed', () => {
   let wrapper
   beforeEach(() => {
-    wrapper = setup({ guessedWord: [] })
+    wrapper = setup({ guessedWords: [] })
   })
   test('renders without error', () => {
     const appComponent = findTestByAttrr(wrapper, 'component-guessed-words')
@@ -30,4 +30,26 @@ describe('if there are no words guessed', () => {
   })
 })
 
-describe('if there are words guessed', () => {})
+describe('if there are words guessed', () => {
+  const guessedWords = [
+    { guessedWord: 'train', letterMatchCount: 3 },
+    { guessedWord: 'agile', letterMatchCount: 5 },
+    { guessedWord: 'party', letterMatchCount: 9 },
+  ]
+  let wrapper
+  beforeEach(() => {
+    wrapper = setup({ guessedWords })
+  })
+  test('renders without error', () => {
+    const appComponent = findTestByAttrr(wrapper, 'component-guessed-words')
+    expect(appComponent.length).toBe(1)
+  })
+  test('renders guessed words section', () => {
+    const guessedWordsNode = findTestByAttrr(wrapper, 'guessed-words')
+    expect(guessedWordsNode.length).toBe(1)
+  })
+  test('renders correct number of guessed words', () => {
+    const guessedWordsNodes = findTestByAttrr(wrapper, 'guessed-word')
+    expect(guessedWordsNodes.length).toBe(guessedWords.length)
+  })
+})
