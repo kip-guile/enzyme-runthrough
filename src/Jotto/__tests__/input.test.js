@@ -1,24 +1,23 @@
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import Input from '../input'
 import { Provider } from 'react-redux'
 import store from '../store'
 import { findTestByAttrr } from '../../utils'
 
-let wrapped
-
-beforeEach(() => {
-  wrapped = mount(
-    <Provider store={store}>
-      <Input />
-    </Provider>
-  )
-})
-
-afterEach(() => {
-  wrapped.unmount()
-})
-
 describe('render', () => {
+  let wrapped
+
+  beforeEach(() => {
+    wrapped = mount(
+      <Provider store={store}>
+        <Input />
+      </Provider>
+    )
+  })
+
+  afterEach(() => {
+    wrapped.unmount()
+  })
   describe('word has not been guessed', () => {
     test('renders component without error', () => {
       const component = findTestByAttrr(wrapped, 'component-input')
@@ -33,10 +32,33 @@ describe('render', () => {
       expect(submitButton.length).toBe(1)
     })
   })
+
   describe('word has been guessed', () => {
-    test('renders component without error', () => {})
-    test('does not render input box', () => {})
-    test('does not render submit button', () => {})
+    let wrapped
+
+    beforeEach(() => {
+      wrapped = mount(
+        <Provider store={store}>
+          <Input test={true} />
+        </Provider>
+      )
+    })
+
+    afterEach(() => {
+      wrapped.unmount()
+    })
+    test('renders component without error', () => {
+      const component = findTestByAttrr(wrapped, 'component-input')
+      expect(component.length).toBe(1)
+    })
+    test('does not render input box', () => {
+      const inputBox = findTestByAttrr(wrapped, 'input-box')
+      expect(inputBox.length).toBe(0)
+    })
+    test('does not render submit button', () => {
+      const submitButton = findTestByAttrr(wrapped, 'submit-button')
+      expect(submitButton.length).toBe(0)
+    })
   })
 })
 
