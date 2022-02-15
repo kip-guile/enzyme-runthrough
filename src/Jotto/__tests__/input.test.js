@@ -2,6 +2,7 @@ import { mount } from 'enzyme'
 import Input from '../input'
 import { Provider } from 'react-redux'
 import store from '../store'
+import { correctGuessActionCreator } from '../store/slice'
 import { findTestByAttrr } from '../../utils'
 
 describe('render', () => {
@@ -35,13 +36,13 @@ describe('render', () => {
 
   describe('word has been guessed', () => {
     let wrapped
-
     beforeEach(() => {
       wrapped = mount(
         <Provider store={store}>
-          <Input test={true} />
+          <Input />
         </Provider>
       )
+      store.dispatch(correctGuessActionCreator())
     })
 
     afterEach(() => {

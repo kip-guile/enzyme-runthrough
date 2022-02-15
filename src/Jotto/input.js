@@ -3,11 +3,9 @@ import { useSelector } from 'react-redux'
 import { correctGuessActionCreator } from './store/slice'
 import { useThunkDispatch } from './hooks/useThunkDIspatch'
 
-const Input = ({ test }) => {
+const Input = () => {
   const dispatch = useThunkDispatch()
-  if (test) {
-    dispatch(correctGuessActionCreator())
-  }
+
   const { success } = useSelector((state) => state.localState)
   const contents = success ? null : (
     <form className='form-inline'>

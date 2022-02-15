@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getLetterMatchCount } from '../../helpers'
 
 export const initialState = {
   success: false,
+  guessedWords: [],
+  secretWord: '',
 }
 
 const localState = createSlice({
@@ -10,6 +13,19 @@ const localState = createSlice({
   reducers: {
     correctGuess: (state, { payload }) => {
       state.success = true
+    },
+    guessedWord: (state, { payload }) => {
+      const letterMatchCount = getLetterMatchCount(
+        payload.guessedWord,
+        state.secretWord
+      )
+      state.guessedWords.push({
+        guessedWord: payload.guessedWord,
+        letterMatchCount,
+      })
+      if (payload.guessedWord === state.secretWord) {
+        state.success = true
+      }
     },
   },
   extraReducers: (builder) => {},
