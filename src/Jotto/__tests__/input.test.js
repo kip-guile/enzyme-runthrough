@@ -18,17 +18,20 @@ afterEach(() => {
   wrapped.unmount()
 })
 
-// const setup = (initialState = {}) => {
-//   console.log(wrapped.)
-// }
-
-// setup()
-
 describe('render', () => {
   describe('word has not been guessed', () => {
-    test('renders component without error', () => {})
-    test('renders input box', () => {})
-    test('renders submit button', () => {})
+    test('renders component without error', () => {
+      const component = findTestByAttrr(wrapped, 'component-input')
+      expect(component.length).toBe(1)
+    })
+    test('renders input box', () => {
+      const inputBox = findTestByAttrr(wrapped, 'input-box')
+      expect(inputBox.length).toBe(1)
+    })
+    test('renders submit button', () => {
+      const submitButton = findTestByAttrr(wrapped, 'submit-button')
+      expect(submitButton.length).toBe(1)
+    })
   })
   describe('word has been guessed', () => {
     test('renders component without error', () => {})
